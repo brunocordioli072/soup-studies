@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.jws.Oneway;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -12,7 +13,8 @@ public interface Estoque {
     @WebMethod(operationName="todosOsItens")
     ListaItens getItens(@WebParam(name="filtros") Filtros filtros);
 
-    @WebMethod(exclude=true)
-    void outroMetodo();
+    @Oneway
+    @WebMethod(operationName="cadastrarItem")
+    void cadastrarItem(@WebParam(name="item") Item item, @WebParam(mode = WebParam.Mode.IN) TokenUsuario tokenUsuario);
 
 }
